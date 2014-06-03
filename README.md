@@ -7,6 +7,8 @@ myCpp11Study
 
 *2. 2014-06-01 增加对cereal的测试代码；
 
+*3. 2014-06-03 增加右值引用的测试；
+
 ****
 lizhenghn@gmail.com
 
