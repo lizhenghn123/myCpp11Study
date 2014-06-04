@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="myCpp11StudyCodes.cpp">
+    <ClCompile Include="decltype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

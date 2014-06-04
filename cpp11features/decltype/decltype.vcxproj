@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3F98E9E4-CB75-4B99-8CD9-C296BA14837F}</ProjectGuid>
+    <ProjectGuid>{C2DB7A3F-ABC9-4DA7-A534-DDDCB6503AF4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>myCpp11StudyCodes</RootNamespace>
+    <RootNamespace>decltype</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,7 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="myCpp11StudyCodes.cpp" />
+    <ClCompile Include="decltype.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,6 +9,8 @@ myCpp11Study
 
 *3. 2014-06-03 增加右值引用的测试；
 
+*4. 2014-06-04 增加decltype使用测试；
+
 ****
 lizhenghn@gmail.com
 

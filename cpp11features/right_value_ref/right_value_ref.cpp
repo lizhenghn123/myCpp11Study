@@ -105,5 +105,6 @@ int main()
 	printf("4: 0x%x\n", &v2[0]);
 	cout << "----------------------------\n";
 
+	getchar();
 	return 0;
 }
