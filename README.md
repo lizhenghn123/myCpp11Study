@@ -11,6 +11,8 @@ myCpp11Study
 
 *4. 2014-06-04 增加decltype使用测试；
 
+*5. 2014-06-04 增加initialization_list使用测试；
+
 ****
 lizhenghn@gmail.com
 
