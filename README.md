@@ -13,6 +13,8 @@ myCpp11Study
 
 *5. 2014-06-04 增加initialization_list使用测试；
 
+*6. 2014-06-04 增加强类型enum和无限制union使用测试；
+
 ****
 lizhenghn@gmail.com
 
