@@ -1,4 +1,4 @@
-/*http://www.ibm.com/developerworks/cn/aix/library/1307_lisl_c11/*/
+/* http://www.ibm.com/developerworks/cn/aix/library/1307_lisl_c11/ */
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,7 +16,8 @@ void test_rvr(int && i)
 	cout << forward_r_value(2) << "\n";  //false: 虽然2是右值，但是经过转发后变成了具名变量，最终变成左值
 }
 
-/***             右值引用最大的价值之一： 支持转移语义(Move Sementics)
+//                   右值引用最大的价值之一： 支持转移语义(Move Sementics)
+/***
 转移语义可以将资源(堆，系统对象等) 从一个对象转移到另一个对象，这样能够减少不必要的临时对象的创建、拷贝以及销毁，
 能够大幅度提高 C++ 应用程序的性能。
 
@@ -52,7 +53,8 @@ std::vector<int> test(const std::vector<int>& v)
 	//return std::move(t);
 }
 
-/***             右值引用最大的价值之二： 精确传递、完美转发 (Perfect Forwarding)
+//                   右值引用最大的价值之二： 精确传递、完美转发 (Perfect Forwarding)
+/***             
 能够更简洁明确地定义泛型函数
 精确传递适用于这样的场景：需要将一组参数原封不动的传递给另一个函数。
 “原封不动”不仅仅是参数的值不变，在 C++ 中，除了参数值之外，还有一下两组属性：左值／右值和 const/non-const。
@@ -63,24 +65,63 @@ void process_value(int& i) { std::cout << "int&\n"; }
 void process_value(const int& i) { std::cout << "const int&\n"; }
 void process_value(int&& i) { std::cout << "int&&\n"; }
 void process_value(const int&& i) { std::cout << "const int&&\n"; }
-template <typename T> 
-void forward_value(T&& val) 
+
+template<typename T>
+void print_value(T& t)
 {
-	process_value(val);
+	cout << "lvalue " << t << "\n";
 }
-//template <typename T> void forward_value(const T& val) {
-//	process_value(val);
-//}
-//template <typename T> void forward_value(T& val) {
-//	process_value(val);
-//}
+
+template<typename T>
+void print_value(T && t)
+{
+	cout << "rvalue " << t << "\n";
+}
+
+template<typename T>
+void do_forward(T && v)
+{
+	print_value(v);
+	print_value(std::forward<T>(v)); //按照参数本来的类型来转发出去
+	print_value(std::move(v));       //将v变成右值引用
+}
+
 void test_forward()
 {
 	int a = 0;
 	const int& b = 1;
-	forward_value(a); // int& 
-	forward_value(b); // const int& 
-	forward_value(2); // int& (原文介绍这是int&&，但肯定不是啊，毕竟到达forward_value后就变成了命名对象，只能是左值了)
+	process_value(a); // int& 
+	process_value(b); // const int& 
+	process_value(2); // int&&
+	process_value(std::move(a)); // int&&
+	process_value(std::move(2)); // int&&
+	process_value(std::move(b)); // const int&&
+
+	int x = 1;
+	do_forward(1);  // lvalue rvalue rvalue
+	do_forward(x);  // lvalue lvalue rvalue
+	do_forward(std::forward<int>(x));  // lvalue rvalue rvalue	
+}
+
+//通用函数包装器
+template<typename Function, class... Args>
+inline auto FuncWrapper(Function && func, Args && ... args) -> decltype(func(std::forward<Args>(args)...))
+{
+	//typedef decltype(func(std::forward<Args>(args)...)) ReturnType;
+	return func(std::forward<Args>(args)...);
+}
+
+void func1(){ cout << "void" << endl; }
+int  func2(){ return 1; }
+int  func3(int x){ return x; }
+std::string func4(std::string s1, std::string s2){ return s1 + s2; }
+
+void test_func_wapper()
+{
+	FuncWrapper(func1);  // 1
+	//std::cout << FuncWrapper(func2) << "\n"; // 1
+	//std::cout << FuncWrapper(func3, 2) << "\n"; // 2
+	//std::cout << FuncWrapper(func4, "hello", " world") << "\n"; // hello  world
 }
 
 int main()
@@ -91,10 +132,13 @@ int main()
 	test_forward();
 	cout << "----------------------------\n";
 
+	test_func_wapper();
+	cout << "----------------------------\n";
+
 	printf("3: 0x%08x\n", test("右值引用测试！").c_str());
 	cout << "----------------------------\n";
 
-	std::vector<int> v(3); // 改变这个值的大小 <3，将会看到v2[0]地址的变化
+	std::vector<int> v(3); // 改变这个值的大小(<3)，将会看到v2[0]地址的变化
 	v.push_back(2);
 	v.push_back(5);
 	v.push_back(9);
