@@ -15,6 +15,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "initialization_list", "cpp1
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enum_union", "cpp11features\enum_union\enum_union.vcxproj", "{ED3D565D-7266-4226-A8D0-C0550DD9F41C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "delete_default", "cpp11features\delete_default\delete_default.vcxproj", "{6ED476F8-69DD-49B2-AE07-682959E2D8D7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "overrides_final", "cpp11features\overrides_final\overrides_final.vcxproj", "{196552B3-72D6-4D58-946A-099AE091EC28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -41,6 +45,14 @@ Global
 		{ED3D565D-7266-4226-A8D0-C0550DD9F41C}.Debug|Win32.Build.0 = Debug|Win32
 		{ED3D565D-7266-4226-A8D0-C0550DD9F41C}.Release|Win32.ActiveCfg = Release|Win32
 		{ED3D565D-7266-4226-A8D0-C0550DD9F41C}.Release|Win32.Build.0 = Release|Win32
+		{6ED476F8-69DD-49B2-AE07-682959E2D8D7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6ED476F8-69DD-49B2-AE07-682959E2D8D7}.Debug|Win32.Build.0 = Debug|Win32
+		{6ED476F8-69DD-49B2-AE07-682959E2D8D7}.Release|Win32.ActiveCfg = Release|Win32
+		{6ED476F8-69DD-49B2-AE07-682959E2D8D7}.Release|Win32.Build.0 = Release|Win32
+		{196552B3-72D6-4D58-946A-099AE091EC28}.Debug|Win32.ActiveCfg = Debug|Win32
+		{196552B3-72D6-4D58-946A-099AE091EC28}.Debug|Win32.Build.0 = Debug|Win32
+		{196552B3-72D6-4D58-946A-099AE091EC28}.Release|Win32.ActiveCfg = Release|Win32
+		{196552B3-72D6-4D58-946A-099AE091EC28}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +62,7 @@ Global
 		{C2DB7A3F-ABC9-4DA7-A534-DDDCB6503AF4} = {9E85737A-6117-4176-836F-D6F59FA50282}
 		{54041CEA-8C44-4417-AE21-1CFEB023980D} = {9E85737A-6117-4176-836F-D6F59FA50282}
 		{ED3D565D-7266-4226-A8D0-C0550DD9F41C} = {9E85737A-6117-4176-836F-D6F59FA50282}
+		{6ED476F8-69DD-49B2-AE07-682959E2D8D7} = {9E85737A-6117-4176-836F-D6F59FA50282}
+		{196552B3-72D6-4D58-946A-099AE091EC28} = {9E85737A-6117-4176-836F-D6F59FA50282}
 	EndGlobalSection
 EndGlobal
