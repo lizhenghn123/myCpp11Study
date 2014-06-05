@@ -1,6 +1,8 @@
 #各编译器对C++11特性的支持情况
 
+	|-------------------------------------------------------|----------|-----------|-------------|--------------|
 	|feature                                			 	|  VS2013  |  g++ 4.8  |  Clang 3.3  |  Intel 13.0  |
+	|-------------------------------------------------------|----------|-----------|-------------|--------------|
 	|auto                                    				|   Yes	   |   Yes	   |    Yes	     |     Yes      |
 	|decltype                                				|   Yes	   |   Yes	   |    Yes	     |     Yes      |
 	|Rvalue references and move semantics 	 				|   Yes	   |   Yes	   |    Yes	     |     Yes      |
@@ -43,6 +45,7 @@
 	|Inheriting constructors								|   No	   |   Yes	   |    No		 |    No	    |
 	|Rvalue references for *this							|   No	   |   No	   |    Yes		 |    No	    |
 	|Minimal support for garbage collection					|   Yes	   |   No	   |    No		 | Don’t know   |
+	|-------------------------------------------------------|----------|-----------|-------------|--------------|
 
 
 参考：
