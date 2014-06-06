@@ -6,6 +6,7 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <future>
 #include <chrono>
 using namespace std;
 //http://cpp1x.org/Thread.html  http://zh.cppreference.com/w/cpp/thread
@@ -255,28 +256,232 @@ void test_condition_variable()
 	consumer.join();
 }
 
-//         Futures
-void test_future()
+//         std::call_once
+std::once_flag once_init;
+int one = 0, two = 0;
+void only_call_once()
 {
+	one++;
+	std::cout << "only_call_once\n";
+}
+void add_num()
+{
+	std::call_once(once_init, &only_call_once); //可以用来实现单例程序
+	two++;
+	std::cout << "add_num\n";
+}
+void test_call_once()
+{
+	const int thread_num = 5;
+	std::thread threads[thread_num];
+	for (int i = 0; i < thread_num; ++i)
+	{
+		threads[i] = std::thread(add_num);
+	}
+	for (auto& th : threads)
+	{
+		th.join();
+	}
 
+	std::cout << one << "\t" << two << "\n";  // 1 5
 }
 
+//         Futures: promise、future
+/***  http://www.cnblogs.com/haippy/p/3280643.html
+promise对象可以保存某一类型T的值，该值可被future对象读取（可能在另外一个线程中），因此promise也提供了一种线程同步的手段。
+在promise对象构造时可以和一个共享状态（通常是std::future）相关联，并可以在相关联的共享状态(std::future)上保存一个类型为 T 的值。
+可以通过 get_future 来获取与该 promise 对象相关联的 future 对象，调用该函数之后，两个对象共享相同的共享状态(shared state):
+	promise 对象是异步 Provider，它可以在某一时刻设置共享状态的值。
+	future 对象可以异步返回共享状态的值，或者在必要的情况下阻塞调用者并等待共享状态标志变为 ready，然后才能获取共享状态的值。
+***/
+void print_int(std::future<int>& fut) {
+	int x = fut.get(); // 获取共享状态的值.
+	std::cout << "value: " << x << '\n'; // value: 10.
+}
+
+void test_future_promise()
+{
+	std::promise<int> prom;					  // 生成一个 std::promise<int> 对象.
+	std::future<int> fut = prom.get_future(); // 和 future 关联.
+	std::thread t(print_int, std::ref(fut));  // 将 future 交给另外一个线程t.
+	prom.set_value(10);						  // 设置共享状态的值, 此处和线程t保持同步.
+
+	t.join();
+}
+/***
+std::packaged_task 包装一个可调用的对象，并且允许异步获取该可调用对象产生的结果，从包装可调用对象意义上来讲，std::packaged_task 与 std::function 类似，
+只不过 std::packaged_task 将其包装的可调用对象的执行结果传递给一个 std::future 对象（该对象通常在另外一个线程中获取 std::packaged_task 任务的执行结果）。
+
+std::packaged_task 对象内部包含了两个最基本元素，
+	一、被包装的任务(stored task)，任务(task)是一个可调用的对象，如函数指针、成员函数指针或者函数对象，
+	二、共享状态(shared state)，用于保存任务的返回值，可以通过 std::future 对象来达到异步访问共享状态的效果。
+可以通过 std::packged_task::get_future 来获取与共享状态相关联的 std::future 对象。在调用该函数之后，两个对象共享相同的共享状态，具体解释如下：
+	std::packaged_task 对象是异步 Provider，它在某一时刻通过调用被包装的任务来设置共享状态的值。
+	std::future 对象是一个异步返回对象，通过它可以获得共享状态的值，当然在必要的时候需要等待共享状态标志变为 ready.
+	std::packaged_task 的共享状态的生命周期一直持续到最后一个与之相关联的对象被释放或者销毁为止。
+***/
+// count down taking a second for each value:
+int countdown(int from, int to)
+{
+	for (int i = from; i != to; --i) 
+	{
+		std::cout << i << '\n';
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+	}
+	std::cout << "Finished!\n";
+	return from - to;
+}
+
+void test_future_packaged_task()
+{
+	{
+		std::packaged_task<int(int, int)> task(countdown);  // 设置 packaged_task
+		std::future<int> ret = task.get_future();			// 获得与 packaged_task 共享状态相关联的 future 对象.
+
+		std::thread th(std::move(task), 10, 0);				//创建一个新线程完成计数任务.
+
+		int value = ret.get();								// 等待任务完成并获取结果.
+		std::cout << "The countdown lasted for " << value << " seconds.\n";
+		th.join();
+	}
+	{
+		std::packaged_task<int(int)> tsk([](int x) { return x * 3; }); // package task
+		std::future<int> fut = tsk.get_future();		// 获取 future 对象.
+		std::thread(std::move(tsk), 100).detach();		// 生成新线程并调用packaged_task.
+		int value = fut.get();							// 等待任务完成, 并获取结果.
+		std::cout << "The triple of 100 is " << value << ".\n";
+	}
+}
+
+/***
+std::future 可以用来获取异步任务的结果，因此可以把它当成一种简单的线程间同步的手段。
+一个有效的 std::future 对象通常由以下三种 Provider 创建，并和某个共享状态相关联。Provider 可以是函数或者类，他们分别是：
+	std::async 函数；
+	std::promise::get_future，get_future 为 promise 类的成员函数；
+	std::packaged_task::get_future，此时 get_future为 packaged_task 的成员函数；
+***/
+int do_get_value() { return 10; }
+bool do_check_prime(int x) 
+{
+	for (int i = 2; i < x; ++i)
+		if (x % i == 0)
+			return false;
+	return true;
+}
+double ThreadTask(int n) 
+{
+	std::cout << std::this_thread::get_id() << " start computing..." << std::endl;
+	double ret = 0;
+	for (int i = 0; i <= n; i++) 
+		ret += std::sin(i);
+	std::cout << std::this_thread::get_id()	<< " finished computing..." << std::endl;
+	return ret;
+}
+void do_print_ten(char c, int ms)
+{
+	for (int i = 0; i < 10; ++i) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+		std::cout << c;
+	}
+}
+void test_future()
+{
+	{
+		std::future<int> fut = std::async(do_get_value);
+		std::shared_future<int> shared_fut = fut.share();
+
+		// 共享的 future 对象可以被多次访问.
+		std::cout << "value: " << shared_fut.get() << '\n';
+		std::cout << "its double: " << shared_fut.get() * 2 << '\n';
+	}
+	{
+		// call function asynchronously:
+		std::future < bool > fut = std::async(do_check_prime, 194232491);
+		std::cout << "Checking...\n";
+		fut.wait();		//被阻塞当前线程，直到共享状态的标志变为 ready
+		std::cout << "194232491 ";
+		if (fut.get())  // guaranteed to be ready (and not block) after wait returns
+			std::cout << "is prime.\n";
+		else
+			std::cout << "is not prime.\n";
+	}
+	{
+		// call function asynchronously:
+		std::future < bool > fut = std::async(do_check_prime, 194232491);
+
+		std::cout << "Checking...\n";
+		std::chrono::milliseconds span(10); // 设置超时间隔.
+
+		// 如果超时，则输出"."，继续等待
+		while (fut.wait_for(span) == std::future_status::timeout) //阻塞，直至等待了span的时间后wait_until()返回
+			std::cout << '.';
+
+		std::cout << "\n194232491 ";
+		if (fut.get()) // guaranteed to be ready (and not block) after wait returns
+			std::cout << "is prime.\n";
+		else
+			std::cout << "is not prime.\n";
+	}
+	{
+		std::future<double> f(std::async(std::launch::async, ThreadTask, 100000000)); //async相当于一个线程调用
+#if 0
+		while (f.wait_until(std::chrono::system_clock::now() + std::chrono::seconds(1))!= std::future_status::ready) 
+		{
+			std::cout << "task is running...\n";
+		}
+#else
+		while (f.wait_for(std::chrono::seconds(1))!= std::future_status::ready) 
+		{
+			std::cout << "task is running...\n";
+		}
+#endif
+		std::cout << f.get() << std::endl;
+	}
+	{
+		std::cout << "with launch::async:\n";
+		std::future < void >foo =
+			std::async(std::launch::async, do_print_ten, '*', 100);
+		std::future < void >bar =
+			std::async(std::launch::async, do_print_ten, '@', 200);
+		// async "get" (wait for foo and bar to be ready):
+		foo.get();
+		bar.get();
+		std::cout << "\n\n";
+
+		std::cout << "with launch::deferred:\n";
+		foo = std::async(std::launch::deferred, do_print_ten, '*', 100);
+		bar = std::async(std::launch::deferred, do_print_ten, '@', 200);
+		// deferred "get" (perform the actual calls):
+		foo.get();
+		bar.get();
+		std::cout << '\n';
+	}
+}
 
 int main()
 {
-	test_thread();
+	//test_thread();
 	std::cout << "- - - - - - - - - - - - -\n";
 
-	test_mutex();
+	//test_mutex();
 	std::cout << "- - - - - - - - - - - - -\n";
 
-	test_safe_vector();
+	//test_safe_vector();
 	std::cout << "- - - - - - - - - - - - -\n";
 
-	test_deadlock();
+	//test_deadlock();
 	std::cout << "- - - - - - - - - - - - -\n";
 
-	test_condition_variable();
+	//test_condition_variable();
+	std::cout << "- - - - - - - - - - - - -\n";
+
+	//test_call_once();
+	std::cout << "- - - - - - - - - - - - -\n";
+
+	//test_future_promise();
+	std::cout << "- - - - - - - - - - - - -\n";
+
+	//test_future_packaged_task();
 	std::cout << "- - - - - - - - - - - - -\n";
 
 	test_future();
