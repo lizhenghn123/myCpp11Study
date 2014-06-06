@@ -36,7 +36,7 @@
 	|User defined literals									|   No	   |   Yes	   |    Yes		 |     No	    |
 	|Encoding support in literals							|   No	   |   Yes	   |    Yes		 |     No	    |
 	|Arbitrary expressions in template deduction contexts	|   No	   |   Yes	   |    Yes		 | Don’t know   |
-	||Non-static data member initializers					|   No	   |   Yes	   |    Yes		 | Don’t know   |
+	|Non-static data member initializers					|   No	   |   Yes	   |    Yes		 | Don’t know   |
 	|noexcept												|   No	   |   Yes	   |    Yes		 |  Partial	    |
 	|constexpr												|   No	   |   Yes	   |    Yes		 |  Partial	    |
 	|C99 compatibility										|  Partial |   Yes	   |  Partial	 |    Yes	    |

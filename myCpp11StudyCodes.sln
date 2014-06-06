@@ -33,6 +33,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lambda_test", "cpp11feature
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{15EAE415-4EB1-4CEA-A766-EBCD6605CBC1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "unordered_set_map", "cpp11features\unordered_set_map\unordered_set_map.vcxproj", "{DA1C9192-A190-4695-94D1-20B375A8FFC0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "using_and_so_on", "cpp11features\using_and_so_on\using_and_so_on.vcxproj", "{272FEDFF-526C-4745-98C7-DBC3E66E04B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -91,6 +95,14 @@ Global
 		{1320ABF2-BB63-4C53-A680-6D4B5B75646B}.Debug|Win32.Build.0 = Debug|Win32
 		{1320ABF2-BB63-4C53-A680-6D4B5B75646B}.Release|Win32.ActiveCfg = Release|Win32
 		{1320ABF2-BB63-4C53-A680-6D4B5B75646B}.Release|Win32.Build.0 = Release|Win32
+		{DA1C9192-A190-4695-94D1-20B375A8FFC0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA1C9192-A190-4695-94D1-20B375A8FFC0}.Debug|Win32.Build.0 = Debug|Win32
+		{DA1C9192-A190-4695-94D1-20B375A8FFC0}.Release|Win32.ActiveCfg = Release|Win32
+		{DA1C9192-A190-4695-94D1-20B375A8FFC0}.Release|Win32.Build.0 = Release|Win32
+		{272FEDFF-526C-4745-98C7-DBC3E66E04B4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{272FEDFF-526C-4745-98C7-DBC3E66E04B4}.Debug|Win32.Build.0 = Debug|Win32
+		{272FEDFF-526C-4745-98C7-DBC3E66E04B4}.Release|Win32.ActiveCfg = Release|Win32
+		{272FEDFF-526C-4745-98C7-DBC3E66E04B4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,5 +120,7 @@ Global
 		{EF5E3C13-9F9A-49B5-8199-30682CF659D3} = {9E85737A-6117-4176-836F-D6F59FA50282}
 		{96C8CCEC-A81F-4068-A061-46383B091201} = {9E85737A-6117-4176-836F-D6F59FA50282}
 		{1320ABF2-BB63-4C53-A680-6D4B5B75646B} = {9E85737A-6117-4176-836F-D6F59FA50282}
+		{DA1C9192-A190-4695-94D1-20B375A8FFC0} = {9E85737A-6117-4176-836F-D6F59FA50282}
+		{272FEDFF-526C-4745-98C7-DBC3E66E04B4} = {9E85737A-6117-4176-836F-D6F59FA50282}
 	EndGlobalSection
 EndGlobal
