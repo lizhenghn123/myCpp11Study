@@ -9,8 +9,8 @@ class SomeType;
 //typedef可定义模板类型一个新的类型名称，但是不能够使用typedef来定义模板的别名
 typedef std::vector<int> IntVec;    // Ok
 
-template< typename second>
-typedef SomeType<int, second, 5> TypedefName;   // Error
+//template< typename second>
+//typedef SomeType<int, second, 5> TypedefName;   // Error
 
 //使用using定义模板别名
 template< typename second>
@@ -29,9 +29,9 @@ extern template class std::vector<std::string>; //告诉编译器不要在该编译单元内将
 
 //右尖括号：C++11 提供了新的解析规则，多个右尖括号的时候，会优先为模板解析；但是有括号的时候，会先解析括号
 //VS2013不支持
-template<bool Test> class SomeType { };
-std::vector<SomeType<1>2>> x1; // Interpreted as a std::vector of SomeType<true> 2>, which is not legal syntax. 1 is true.
-std::vector<SomeType<(1>2)> > x1; // Interpreted as a std::vector of SomeType<false>, which is legal C++11 syntax, (1>2) is false.
+//template<bool Test> class SomeType { };
+//std::vector<SomeType<1>2>> x1; // Interpreted as a std::vector of SomeType<true> 2>, which is not legal syntax. 1 is true.
+//std::vector<SomeType<(1>2)> > x1; // Interpreted as a std::vector of SomeType<false>, which is legal C++11 syntax, (1>2) is false.
 
 int main()
 {

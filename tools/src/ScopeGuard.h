@@ -9,9 +9,12 @@
 // 
 // Copyright (c) lizhenghn@gmail.com. All rights reserved.
 // ***********************************************************************
-#ifndef SCOPEGUARD_FILE_H
-#define SCOPEGUARD_FILE_H
+#ifndef ZL_SCOPEGUARD_FILE_H
+#define ZL_SCOPEGUARD_FILE_H
 #include <functional> 
+
+namespace ZL
+{
 
 /// \brief     ScopeGuard : 资源自动释放实现类
 /// \author    LIZHENG
@@ -50,4 +53,6 @@ private:
 
 #define ON_SCOPE_EXIT(callback) ScopeGuard SCOPEGUARD_LINENAME(EXIT, __LINE__)(callback)
 
-#endif /* SCOPEGUARD_FILE_H */
+} /* namespace ZL */
+
+#endif /* ZL_SCOPEGUARD_FILE_H */

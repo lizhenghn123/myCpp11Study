@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test_job_queue.cpp">
+    <ClCompile Include="test_safe_printf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\JobQueue.h">
+    <ClInclude Include="..\src\safe_printf.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

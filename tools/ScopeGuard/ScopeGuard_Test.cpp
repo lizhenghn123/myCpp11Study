@@ -42,18 +42,18 @@ void test_scope_guard()
 {
 	{
 		int *pi = new int;
-		ScopeGuard onExit([&] { delete pi; pi = nullptr; });
+		ZL::ScopeGuard onExit([&] { delete pi; pi = nullptr; });
 	}
 	{
 		SC *sc = new SC;
-		ON_SCOPE_EXIT([&sc]{ delete sc; sc = nullptr; }); // Ok
+		ZL::ON_SCOPE_EXIT([&sc]{ delete sc; sc = nullptr; }); // Ok
 		//ON_SCOPE_EXIT([&sc]{ Safe_Delete(sc) }); // Ok		
 	}
 	std::cout << "===================\n";
 	{
 		SC *sc = new SC;
 		//ON_SCOPE_EXIT([&sc]{ Safe_Delete(sc) });
-		ScopeGuard rollbackIfFail([&]{ sc->RollBack(); });
+		ZL::ScopeGuard rollbackIfFail([&]{ sc->RollBack(); });
 		do
 		{
 			//do something.....
@@ -67,8 +67,8 @@ void test_scope_guard()
 	std::cout << "===================\n";
 	{
 		SC *sc = new SC(1);
-		ON_SCOPE_EXIT([&sc]{ Safe_Delete(sc) });
-		ScopeGuard rollbackIfFail([&]{ sc->RollBack(); });
+		ZL::ON_SCOPE_EXIT([&sc]{ Safe_Delete(sc) });
+		ZL::ScopeGuard rollbackIfFail([&]{ sc->RollBack(); });
 		do
 		{
 			//do something.....

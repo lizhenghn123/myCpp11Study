@@ -10,10 +10,16 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\safe_printf.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test_safe_printf.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3270C9F8-124E-410F-96DD-E05794FF8642}</ProjectGuid>
+    <ProjectGuid>{8D5A3803-3450-40B2-80DB-DA73DA556691}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>JobQueue</RootNamespace>
+    <RootNamespace>safe_printf</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,12 +84,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="test_job_queue.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\JobQueue.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

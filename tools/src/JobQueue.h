@@ -9,12 +9,15 @@
 // 
 // Copyright (c) lizhenghn@gmail.com. All rights reserved.
 // ***********************************************************************
-#ifndef JobQUEUE_FILE_H
-#define JobQUEUE_FILE_H
+#ifndef ZL_JOBQUEUE_FILE_H
+#define ZL_JOBQUEUE_FILE_H
 
 #include <queue>
 #include <mutex>
 #include <condition_variable>
+
+namespace ZL
+{ 
 
 template <typename Job, typename Queue = std::queue<Job> >
 class JobQueue
@@ -72,5 +75,6 @@ protected:
 	QueueType        queue_;
 };
 
+} /* namespace ZL */
 
-#endif /* JobQUEUE_FILE_H */
+#endif /* ZL_JOBQUEUE_FILE_H */

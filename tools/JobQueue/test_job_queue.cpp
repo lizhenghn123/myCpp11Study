@@ -7,7 +7,7 @@ using namespace std;
 void test_ojb_queue()
 {
 	{
-		JobQueue<int> queue;
+		ZL::JobQueue<int> queue;
 		queue.Push(1);
 		queue.Push(3);
 		queue.Push(2);
