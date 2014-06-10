@@ -84,9 +84,6 @@ double eval(std::function<double(double)> f, double x = 2.0){ return f(x); }
 
 void test_lambda2()
 {
-	 
-	
-
 	//下面的例子存储匿名函数在变量、vectors，和 arrays 中，然后把他们的名字当参数传递使用：
 	
 	std::function<double(double)> f0 = [](double x){return 1; };
