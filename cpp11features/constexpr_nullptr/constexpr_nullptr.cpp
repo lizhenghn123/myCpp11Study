@@ -32,8 +32,8 @@ void test_nullptr()
 常量表达式(const expression) 是指值不会改变并且在编译过程就能得到计算结果的表达式。
 C++11规定，允许将变量声明为constexpr类型以便由编译器来验证变量是否是一个常量表达式。
 声明为constexpr 的变量一定是一个常量，而且必须用常量表达式初始化。
-注意：VS2013 尚不支持该关键字
 ***/
+//?+ VS2013 尚不支持该关键字
 
 #ifndef WIN32
 int GetFive1() { return 5; }
