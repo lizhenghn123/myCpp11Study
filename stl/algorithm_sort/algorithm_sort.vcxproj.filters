@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\algorithm_find.cpp">
+    <ClCompile Include="..\src\algorithm_sort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -10,13 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\algorithm_find.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BA35A4B2-0F2C-47E3-9835-EE8A38470816}</ProjectGuid>
+    <ProjectGuid>{E669C06E-9ED3-42CF-8755-8B6BF0990AF5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>algorithm_find</RootNamespace>
+    <RootNamespace>algorithm_heap_set_permutation</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -80,6 +77,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\algorithm_heap_set_permutation.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

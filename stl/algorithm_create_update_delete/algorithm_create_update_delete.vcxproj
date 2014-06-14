@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A065C95F-6135-4CCD-8D52-CAAC1BF6ECA0}</ProjectGuid>
+    <ProjectGuid>{4D0571D6-A1E1-4F72-9FD8-88D384831D63}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>abs</RootNamespace>
+    <RootNamespace>algorithm_create_update_delete</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,7 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\abs.cpp" />
+    <ClCompile Include="..\src\algorithm_create_update_delete.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

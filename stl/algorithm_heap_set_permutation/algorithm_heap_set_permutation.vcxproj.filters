@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\abs.cpp">
+    <ClCompile Include="..\src\algorithm_heap_set_permutation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
