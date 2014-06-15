@@ -55,6 +55,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "algorithm_sort", "stl\algor
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "algorithm_find_search_compare", "stl\algorithm_find_search_compare\algorithm_find_compare.vcxproj", "{7C3635A0-C7C3-4E95-AF03-8218E9A15F4B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "container_sequence", "stl\container_sequence\container_sequence.vcxproj", "{CCF50090-9A44-4F6F-B87C-82D75368CD9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -153,6 +155,10 @@ Global
 		{7C3635A0-C7C3-4E95-AF03-8218E9A15F4B}.Debug|Win32.Build.0 = Debug|Win32
 		{7C3635A0-C7C3-4E95-AF03-8218E9A15F4B}.Release|Win32.ActiveCfg = Release|Win32
 		{7C3635A0-C7C3-4E95-AF03-8218E9A15F4B}.Release|Win32.Build.0 = Release|Win32
+		{CCF50090-9A44-4F6F-B87C-82D75368CD9C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CCF50090-9A44-4F6F-B87C-82D75368CD9C}.Debug|Win32.Build.0 = Debug|Win32
+		{CCF50090-9A44-4F6F-B87C-82D75368CD9C}.Release|Win32.ActiveCfg = Release|Win32
+		{CCF50090-9A44-4F6F-B87C-82D75368CD9C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,5 +186,6 @@ Global
 		{4D0571D6-A1E1-4F72-9FD8-88D384831D63} = {22B92A0A-0712-4DE1-9660-3C0916300C1F}
 		{E47E4F51-B4E1-4DA6-8D9E-6720A83E04A0} = {22B92A0A-0712-4DE1-9660-3C0916300C1F}
 		{7C3635A0-C7C3-4E95-AF03-8218E9A15F4B} = {22B92A0A-0712-4DE1-9660-3C0916300C1F}
+		{CCF50090-9A44-4F6F-B87C-82D75368CD9C} = {22B92A0A-0712-4DE1-9660-3C0916300C1F}
 	EndGlobalSection
 EndGlobal
