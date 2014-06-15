@@ -104,8 +104,9 @@ void test_heap_algorithm()
 }
 
 //排列组合算法
-//next_permutation : 取出当前范围内的排列，并重新排序为下一个排列.重载版本使用自定义的比较操作.
-//prev_permutation : 取出指定范围内的序列并将它重新排序为上一个序列。如果不存在上一个序列则返回false。
+//next_permutation : 返回给定范围中的元素组成的下一个按字典序的排列
+//prev_permutation : 返回给定范围中的元素组成的上一个按字典序的排列,如果不存在上一个序列则返回false
+//is_permutation   : 判断一个序列是否是另一个序列的一种排序
 void test_permutation_algorithm()
 {
 	{

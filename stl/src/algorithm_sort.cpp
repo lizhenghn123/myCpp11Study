@@ -25,8 +25,8 @@ using namespace std;
 //nth_element       : 将范围内的序列重新排序，使所有小于第n个元素的元素都出现在它前面，而大于它的都出现在后面
 //partial_sort      : 对序列做部分排序，被排序元素个数正好可以被放到范围内
 //partial_sort_copy : 与partial_sort类似，不过将经过排序的序列复制到另一个容器
-//partition         : 对指定范围内元素重新排序，使用输入的函数，把结果为t r ue的元素放在结果为fal se的元素之前
-//stable_partition  : 与partition类似，不过不保证保留容器中的相对顺序
+//partition         : 对指定范围内元素重新排序，使用输入的函数，把结果为true的元素放在结果为false的元素之前
+//stable_partition  : 与partition类似，不过保证保留容器中的相对顺序
 //random_shuffle    : 对指定范围内的元素随机调整次序。重载版本输入一个随机数产生操作
 //reverse           : 将指定范围内元素重新反序排序
 //reverse_copy      : 与reverse类似，不过将结果写入另一个容器

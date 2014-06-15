@@ -18,9 +18,9 @@
 using namespace std;
 
 //! 变易算法(Mutating algorithms)就是一组能够修改容器元素数据的模板函数，可进行序列数据的复制，变换等
-//! fill fill_n for_each generate transform
+//! fill fill_n for_each generate generate_n transform
 //! copy copy_backward
-//! iter_swap swap_ranges
+//! swap iter_swap swap_ranges
 //! replace replace_if replace_copy replace_copy_if
 //! remove  remove_if  remove_copy  remove_copy_if
 //! reverse reverse_copy rotate rotate_copy
@@ -33,10 +33,12 @@ void print_all(T start, T end)
 }
 
 //! 生成和变异算法
-//fill      : 将一个范围的元素赋值为给定值
-//generate  : 将一个函数的执行结果保存到指定范围的元素中，用于批量赋值范围中的元素
-//transform : 对指定范围中的每个元素调用某个函数以改变元素的值.
-//            重载版本将操作作用在一对元素上，另外一个元素来自输入的另外一个序列。结果输出到指定容器
+//fill       : 将一个范围的元素赋值为给定值
+//fill_n     : 将某个位置开始的 n 个元素赋值为给定值
+//generate   : 将一个函数的执行结果保存到指定范围的元素中，用于批量赋值范围中的元素
+//generate_n : 将一个函数的执行结果保存到指定位置开始的 n 个元素中
+//transform  : 对指定范围中的每个元素调用某个函数以改变元素的值.
+//             重载版本将操作作用在一对元素上，另外一个元素来自输入的另外一个序列。结果输出到指定容器
 void test()
 {
 	{
@@ -76,8 +78,9 @@ void test()
 }
 
 //        删除和替换算法 15个
-//copy : 
-//copy_backward : 反向复制,从最后的元素开始复制，直到首元素复制出来。也就是说，复制操作是从last-1开始，直到first结束.返回一个迭代器，指出已被复制元素区间的起始位置
+//copy : 将一个范围中的元素拷贝到新的位置处 
+//copy_backward : 将一个范围中的元素按逆序拷贝到新的位置处, 即：反向复制,从最后的元素开始复制，直到首元素复制出来。
+//                复制操作是从last-1开始，直到first结束.返回一个迭代器，指出已被复制元素区间的起始位置
 void test_copy()
 {
 	{
@@ -176,11 +179,11 @@ void test_replace()
 	std::cout << "======================\n";
 }
 
-//remove: 把区间内的元素值为指定值的元素的位置腾出，然后后面的元素就会往前移动。不会真正删除容器中的元素(只是后移)。
+//remove: 将一个范围中值等价于给定值的元素删除.不会真正删除容器中的元素(只是后移)。
 //        返回一个新的end()，即为原来的区间移除指定值并且元素前移后的末尾的下一个位置。但是原来容器的end()并不会改变。
 //remove_if: 从序列中删除满足谓词条件的元素
-//remove_copy: 
-//remove_copy_if: 
+//remove_copy : 拷贝一个范围的元素，将其中值等价于给定值的元素删除
+//remove_copy_if : 拷贝一个范围的元素，将其中值满足给定条件的元素删除
 void test_remove()
 {
 	{	//remove
@@ -215,7 +218,7 @@ void test_remove()
 	std::cout << "======================\n";
 }
 
-//unique：从输入序列中"删除"所有相邻的重复元素,不会真正删除容器中的元素(只是后移)。
+//unique ：从输入序列中"删除"所有相邻的重复元素,不会真正删除容器中的元素(只是后移)。
 //unique_copy: 从指定序列中拷贝不重复元素到新序列里，原序列不变
 void test_unique()
 {

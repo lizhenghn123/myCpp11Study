@@ -202,10 +202,8 @@ void test_search()
 	}
 }
 
-//lower_bound : 查找最远的一个iterator i， 使得[first,i)里面的任意一个iterator j，有 *j < value or comp(*j,value)==true. 
-//              返回一个Iterator，指向在有序序列范围内的可以插入指定值而不破坏容器顺序的第一个位置
-//upper_bound : 查找最远的一个iterator i， 使得[first,i)里面的任意一个iterator j，有 !(*j < value) or comp(*j,value)==false. 
-//              返回一个ForwardIterator,指向在有序序列范围内插入value而不破坏容器顺序的最后一个位置，该位置标志一个大于value的值。
+//lower_bound : 返回指向范围中第一个值大于或等于给定值的元素的迭代器
+//upper_bound : 返回指向范围中第一个值大于给定值的元素的迭代器
 //假定相同值的元素可能有多个,lower_bound 返回第一个符合条件的元素位置;upper_bound 返回最后一个符合条件的元素位置
 void test_lower_upper_bound()
 {
@@ -244,7 +242,7 @@ void test_lower_upper_bound()
 	}
 }
 
-//equal_range : 顺序查找，要求待查序列必须有序
+//equal_range : 顺序查找等于给定值的元素组成的子范围，要求待查序列必须有序
 //              查找最大的subrange[i,j)，使得任意一个iterator in [i,j)满足!(*k<value) && !(value<*k) or comp(*k,value)==false && comp(value,*k)==false.
 //              假定相同值的元素可能有多个,equal_range 返回所有等于指定值的头/尾元素的位置，其实就是lower_bound和upper_bound
 void test_equal_range()
@@ -275,8 +273,8 @@ void test_equal_range()
 //min         : 返回两个元素中较小一个
 //max_element : 返回一个ForwardIterator，指出序列中最大的元素
 //min_element : 返回一个ForwardIterator，指出序列中最小的元素
-//mismatch    : 并行比较两个序列，指出第一个不匹配的位置，返回一对iterator，标志第一个不匹配元素位置。如果都匹配，返回每个容器的last
-//lexicographical_compare : 比较两个序列
+//mismatch    : 比较两个序列，返回一对iterator，标志第一个不匹配元素位置。如果都匹配，返回每个容器的last
+//lexicographical_compare : 按字典序比较两个序列
 void test_relation()
 {
 	vector<int> v1 = { 1, 2, 3, 4, 4, 5, 6, 6, 6, 9 };  //集合操作时必须要求序列有序
