@@ -19,7 +19,7 @@ using namespace std;
 
 //! 变易算法(Mutating algorithms)就是一组能够修改容器元素数据的模板函数，可进行序列数据的复制，变换等
 //! fill fill_n for_each generate generate_n transform
-//! copy copy_backward
+//! copy copy_backward copy_if copy_n
 //! swap iter_swap swap_ranges
 //! replace replace_if replace_copy replace_copy_if
 //! remove  remove_if  remove_copy  remove_copy_if
@@ -78,12 +78,14 @@ void test()
 }
 
 //        删除和替换算法 15个
-//copy : 将一个范围中的元素拷贝到新的位置处 
+//copy    : 将一个范围中的元素拷贝到新的位置处 
 //copy_backward : 将一个范围中的元素按逆序拷贝到新的位置处, 即：反向复制,从最后的元素开始复制，直到首元素复制出来。
 //                复制操作是从last-1开始，直到first结束.返回一个迭代器，指出已被复制元素区间的起始位置
+//copy_if :	将一个范围中满足给定条件的元素拷贝到新的位置处
+//copy_n  : 拷贝 n 个元素到新的位置处
 void test_copy()
 {
-	{
+	{   //copy copy_backward copy_if copy_n
 		vector<int> v1 = { 1, 2, 3, 4, 5, 6 };
 		vector<int> v2;
 		v2.resize(v1.size());
@@ -97,6 +99,14 @@ void test_copy()
 
 		std::copy(v1.begin() + 1, v1.end(), v1.begin()); //将元素依次向左覆盖原元素
 		print_all(v1.begin(), v1.end());  // 2 3 4 5 6 6
+
+		vector<int> v3(v1.size());
+		auto it = std::copy_if(v1.begin(), v1.end(), v3.begin(), [](int e){ return e % 2 == 0; }); //只拷贝偶数
+		print_all(v3.begin(), it); // 2 4 6 6
+
+		v3.clear();
+		std::copy_n(v1.begin() + 1, 3, std::back_inserter(v3));
+		print_all(v3.begin(), v3.end());
 	}
 	{
 		vector<int> v1 = { 1, 2, 3, 4, 5, 6 };
@@ -348,7 +358,7 @@ int main()
 {
 	std::cout << "===================\n";
 
-	//test();
+	test_copy();
 	std::cout << "===================\n";
 
 	//test_numeric_algorithm();

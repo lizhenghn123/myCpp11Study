@@ -17,10 +17,10 @@
 using namespace std;
 
 //! STL的非变易算法（Non-mutating algorithms）是一组不破坏操作数据的模板函数，用来对序列数据进行逐个处理、元素查找、子序列搜索、统计和匹配。
-//! find find_if adjacent_find find_end find_first_of
+//! find find_if find_if_not adjacent_find find_end find_first_of
 //! search search_n binary_search lower_bound upper_bound equal_range
-//! includes equal count mismatch lexicographical_compare
-//! max min max_element min_element
+//! max min max_element min_element mismatch lexicographical_compare
+//! includes equal count count_if all_of any_of none_of
 template<typename T>
 void print_all(T start, T end)
 {
@@ -30,6 +30,7 @@ void print_all(T start, T end)
 
 //find          : 查找等于某值的元素
 //find_if       : 是find的一个谓词判断版本，它利用返回布尔值的谓词判断pred，检查迭代器区间[first, last)上的每一个元素
+//find_if_not   : 返回第一个值不满足给定条件的元素
 //adjacent_find : 用于查找相等或满足条件的邻近元素对。
 //find_end      : 在一个序列中搜索出最后一个与另一序列匹配的子序列.
 //                在迭代器区间[first1, last1)中搜索出与迭代器区间[first2, last2)元素匹配的子序列，返回首元素的迭代器或last1
@@ -37,8 +38,8 @@ void print_all(T start, T end)
 //                有某个元素*j，满足*i ==*j或满足二元谓词函数comp(*i, *j)==true的条件。元素找到则返回迭代器i，否则返回last1
 void test_find()
 {
-	{	//find find_if
-		std::cout << "--------------------    find find_if  --------------------\n";
+	{	//find find_if find_if_not
+		std::cout << "--------------------    find find_if find_if_not --------------------\n";
 		vector<int> vvv = { 16, 2, 30, 3, 45, 75, 69, 70 };
 		print_all(vvv.begin(), vvv.end());
 
@@ -52,7 +53,13 @@ void test_find()
 		//查找第一个能够整除val的元素位置
 		auto iter2 = std::find_if(vvv.begin(), vvv.end(), [&val](int x){ return x % val == 0; });
 		if (iter2 != vvv.end())
-			cout << "find it, at location " << iter2 - vvv.begin() << "\n";
+			cout << "find it, at location " << iter2 - vvv.begin() << ", and value = " << *iter2 << "\n";
+		else
+			cout << "find fail\n";
+
+		auto iter3 = std::find_if_not(vvv.begin(), vvv.end(), [&val](int x){ return x < 50; });
+		if (iter2 != vvv.end())
+			cout << "find it, at location " << iter2 - vvv.begin() << ", and value = "<< *iter3 << "\n";
 		else
 			cout << "find fail\n";
 	}
@@ -273,6 +280,8 @@ void test_equal_range()
 //min         : 返回两个元素中较小一个
 //max_element : 返回一个ForwardIterator，指出序列中最大的元素
 //min_element : 返回一个ForwardIterator，指出序列中最小的元素
+//minmax      : 返回两个元素中值最大及最小的元素
+//minmax_element : 返回给定范围中值最大及最小的元素
 //mismatch    : 比较两个序列，返回一对iterator，标志第一个不匹配元素位置。如果都匹配，返回每个容器的last
 //lexicographical_compare : 按字典序比较两个序列
 void test_relation()
@@ -299,6 +308,11 @@ void test_relation()
 	auto it4 = std::min_element(v1.begin(), v1.end());
 	cout << *it4 << "\n";
 
+	auto it5 = std::minmax({ 3, 5, 8, 0, 1 });
+	cout << it5.first << "\t" << it5.second << "\n";
+	auto it6 = std::minmax_element(v1.begin() + 1, v1.end());
+	cout << *it6.first << "\t" << *it6.second << "\n";
+
 	vector<int> v3 = { 1, 2, 3, 4 };
 	vector<int> v4 = { 1, 2, 3, 4, 5 };
 	pair<vector<int>::iterator, vector<int>::iterator> pp1 = std::mismatch(v3.begin(), v3.end(), v4.begin());
@@ -308,18 +322,41 @@ void test_relation()
 		cout << "different elem : " << *pp1.first << "\t" << *pp1.second << "\n";
 }
 
-//count : 用于计算容器中的某个给定值的出现次数
+//count       : 用于计算容器中的某个给定值的出现次数
+//count_if    : 返回值满足给定条件的元素的个数
+//all_of      : 检测在给定范围中是否所有元素都满足给定的条件
+//any_of      : 检测在给定范围中是否存在元素满足给定的条件
+//none_of     : 检测在给定范围中是否不存在元素满足给定的条件
 void test_count()
 {
-	vector<int> vvv = { 16, 70, 30, 3, 45, 75, 69, 70 };
-	print_all(vvv.begin(), vvv.end());
+	{	// count count_if
+		vector<int> vvv = { 16, 70, 30, 3, 45, 75, 69, 70 };
+		print_all(vvv.begin(), vvv.end());
 
-	int val = 70;
-	int cou = std::count(vvv.begin(), vvv.end(), 70);
-	cout << "total have " << cou << " elems(" << val << ")\n";
+		int val = 70;
+		int cou = std::count(vvv.begin(), vvv.end(), 70);
+		cout << "total have " << cou << " elems(" << val << ")\n";
 
-	int cou2 = std::count_if(vvv.begin(), vvv.end(), [&val](int x){ return x >= 70; });
-	cout << "total have " << cou2 << " elems which is equal or greater than(" << val << ")\n";
+		int cou2 = std::count_if(vvv.begin(), vvv.end(), [&val](int x){ return x >= 70; });
+		cout << "total have " << cou2 << " elems which is equal or greater than(" << val << ")\n";
+	}
+	{	// all_of any_of none_of
+		vector<int> vvv = { 16, 70, 30, 3, 45, 75, 69, 70 };
+		if (std::all_of(vvv.begin(), vvv.end(), [](int e){ return e > 0; }))
+			cout << "all of elems greater than 0\n";
+		else 
+			cout << "not all of elems greater than 0\n";
+
+		if (std::any_of(vvv.begin(), vvv.end(), [](int e){ return e < 10; }))
+			cout << "some of elems less than 10\n";
+		else
+			cout << "all of elems greater than 10\n";
+
+		if (std::none_of(vvv.begin(), vvv.end(), [](int e){ return e > 90; }))
+			cout << "none of elems greater than 90\n";
+		else
+			cout << "some of elems greater than 90\n";
+	}
 }
 
 int main()

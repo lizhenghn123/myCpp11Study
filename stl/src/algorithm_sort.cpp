@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <numeric>
 #include <functional>
+#include <cstdlib>
 using namespace std;
 
 //! sort stable_sort partial_sort partial_sort_copy partition stable_partition nth_element merge inplace_merge
@@ -28,13 +29,15 @@ using namespace std;
 //partition         : 对指定范围内元素重新排序，使用输入的函数，把结果为true的元素放在结果为false的元素之前
 //stable_partition  : 与partition类似，不过保证保留容器中的相对顺序
 //random_shuffle    : 对指定范围内的元素随机调整次序。重载版本输入一个随机数产生操作
+//shuffle           : 用指定的随机数引擎随机打乱指定范围中的元素的位置
 //reverse           : 将指定范围内元素重新反序排序
 //reverse_copy      : 与reverse类似，不过将结果写入另一个容器
 //rotate            : 将指定范围内元素移到容器末尾，由middle指向的元素成为容器第一个元素
 //rotate_copy       : 与rotate类似，不过将结果写入另一个容器
 //sort              : 以升序重新排列指定范围内的元素。重载版本使用自定义的比较操作
 //stable_sort       : 与sort类似，不过保留相等元素之间的顺序关系(即：稳定排序) 
-
+//is_sorted         : C11版本，判断序列是否为排序过的
+//is_sorted_until   : 返回序列从start iterator开始为升序的子序列的结束处
 template<typename T>
 void print_all(T start, T end)
 {
@@ -62,6 +65,29 @@ void test_sort()
 		vector<int> v3 = { 3, 2, 1, 1, 2, 5, 7 };
 		std::stable_sort(v3.begin(), v3.end()); //稳定排序，相同值仍保持原次序
 		print_all(v3.begin(), v3.end());
+	}
+	{	// is_sorted  is_sorted_until 
+		vector<int> v1 = { 3, 1, 20, 4, 5, 9, 8 };
+		if (std::is_sorted(v1.begin(), v1.end()))  //v1 is not sorted
+			cout << "v1 is sorted\n";
+		else
+			cout << "v1 is not sorted\n";
+
+		if (std::is_sorted(v1.begin() + 1, v1.end() - 1))  //subset of v1 is sorted
+			cout << "subset of v1 is sorted\n";
+		else
+			cout << "subset of v1 is not sorted\n";
+
+		vector<int>::iterator it_end = std::is_sorted_until(v1.begin(), v1.end());
+		print_all(v1.begin(), it_end);   // 3 
+
+		vector<int>::iterator it_start = v1.begin() + 1;
+		it_end = std::is_sorted_until(it_start, v1.end());
+		print_all(it_start, it_end);    // 1 20
+
+		it_start = v1.begin() + 2;
+		it_end = std::is_sorted_until(it_start, v1.end(), std::greater<int>());
+		print_all(it_start, it_end);    // 1 20
 	}
 	{	// partial_sort
 		std::cout << "--------------   partial_sort   --------------\n";
@@ -128,12 +154,20 @@ void test_sort()
 		std::inplace_merge(v3.begin(), v3.begin() + 4, v3.end());
 		print_all(v3.begin(), v3.end());
 	}
-	{	// nth_element random_shuffle
+	{	// nth_element random_shuffle shuffle
 		vector<int> v1;
 		std::generate_n(std::back_inserter(v1), 10, []{return rand() % 100; }); //产生10个随机数
 		print_all(v1.begin(), v1.end());
 
 		std::nth_element(v1.begin(), v1.begin() + 1, v1.end()); //将最小的元素放在序列前面
+		print_all(v1.begin(), v1.end());
+
+		std::sort(v1.begin(), v1.end());
+		std::random_shuffle(v1.begin(), v1.end());
+		print_all(v1.begin(), v1.end());
+
+		std::sort(v1.begin(), v1.end());
+		//std::shuffle(v1.begin(), v1.end(), rand);
 		print_all(v1.begin(), v1.end());
 	}
 	std::cout << "======================\n";
