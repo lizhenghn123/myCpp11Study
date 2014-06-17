@@ -59,6 +59,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "container_sequence", "stl\c
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "range", "tools\range\range.vcxproj", "{514C756E-1DF3-46C6-92D7-5A7F78F77647}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "std_components", "std_components", "{3EDEC5FD-14E0-409D-BFEF-982C588BEA29}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "std_time", "std_components\std_time\std_time.vcxproj", "{E29C92C6-E426-47BF-A2D1-B1DA63F5C86B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -165,6 +169,10 @@ Global
 		{514C756E-1DF3-46C6-92D7-5A7F78F77647}.Debug|Win32.Build.0 = Debug|Win32
 		{514C756E-1DF3-46C6-92D7-5A7F78F77647}.Release|Win32.ActiveCfg = Release|Win32
 		{514C756E-1DF3-46C6-92D7-5A7F78F77647}.Release|Win32.Build.0 = Release|Win32
+		{E29C92C6-E426-47BF-A2D1-B1DA63F5C86B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E29C92C6-E426-47BF-A2D1-B1DA63F5C86B}.Debug|Win32.Build.0 = Debug|Win32
+		{E29C92C6-E426-47BF-A2D1-B1DA63F5C86B}.Release|Win32.ActiveCfg = Release|Win32
+		{E29C92C6-E426-47BF-A2D1-B1DA63F5C86B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -194,5 +202,6 @@ Global
 		{7C3635A0-C7C3-4E95-AF03-8218E9A15F4B} = {22B92A0A-0712-4DE1-9660-3C0916300C1F}
 		{CCF50090-9A44-4F6F-B87C-82D75368CD9C} = {22B92A0A-0712-4DE1-9660-3C0916300C1F}
 		{514C756E-1DF3-46C6-92D7-5A7F78F77647} = {15EAE415-4EB1-4CEA-A766-EBCD6605CBC1}
+		{E29C92C6-E426-47BF-A2D1-B1DA63F5C86B} = {3EDEC5FD-14E0-409D-BFEF-982C588BEA29}
 	EndGlobalSection
 EndGlobal
