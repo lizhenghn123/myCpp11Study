@@ -60,6 +60,23 @@ public:
 		return PopOne(job, Order());
 	}
 
+	JobType Pop()
+	{
+		LockGuard lock(mutex_);
+		while (queue_.empty() && !stop_flag_)
+		{
+			has_job_.wait(mutex_);
+		}
+		if (stop_flag_)
+		{
+			return false;
+		}
+
+		JobType job;
+		PopOne(job, Order());
+		return job;
+	}
+
 	virtual bool TryPop(JobType& job)
 	{
 		LockGuard lock(mutex_);
