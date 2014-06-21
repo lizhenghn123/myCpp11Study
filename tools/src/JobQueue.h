@@ -19,7 +19,11 @@
 namespace ZL
 { 
 
-template <typename Job, typename Queue = std::queue<Job> >
+struct tagFIFO {};  //先进先出
+struct tagFILO {};  //后进先出
+struct tagPRIO {};  //按优先级出
+
+template <typename Job, typename Queue = std::queue<Job>, typename Order = tagFIFO >
 class JobQueue
 {
 public:
@@ -53,9 +57,17 @@ public:
 			return false;
 		}
 
-		job = queue_.front();
-		queue_.pop();
-		return true;
+		return PopOne(job, Order());
+	}
+
+	virtual bool TryPop(JobType& job)
+	{
+		LockGuard lock(mutex_);
+
+		if (queue_.empty() && !stop_flag_)
+			return false;
+
+		return PopOne(job, Order());
 	}
 
 	virtual void Stop()
@@ -63,7 +75,34 @@ public:
 		stop_flag_ = true;
 		has_job_.notify_all();
 	}
-
+	template <typename T>
+	bool PopOne(JobType& job, T tag)
+	{
+		job = queue_.front();
+		queue_.pop();
+		return true;
+	}
+	template <>
+	bool PopOne(JobType& job, tagFIFO tag)
+	{
+		job = queue_.front();
+		queue_.pop();
+		return true;
+	}
+	template <>
+	bool PopOne(JobType& job, tagFILO tag)
+	{
+		job = queue_.back();
+		queue_.pop();
+		return true;
+	}
+	template <>
+	bool PopOne(JobType& job, tagPRIO tag)
+	{
+		job = queue_.top();
+		queue_.pop();
+		return true;
+	}
 private:
 	JobQueue(const JobQueue&);
 	JobQueue& operator=(const JobQueue&);

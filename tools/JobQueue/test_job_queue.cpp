@@ -11,11 +11,12 @@ void test_ojb_queue()
 		queue.Push(1);
 		queue.Push(3);
 		queue.Push(2);
+		queue.Push(0);
 
-		int p = 0;
+		int p = -1;
 		while (true)
 		{
-			if (queue.Pop(p))
+			if (queue.TryPop(p))
 				std::cout << p << "\n";
 			else
 				break;
@@ -23,20 +24,21 @@ void test_ojb_queue()
 		std::cout << "================\n";
 	}
 	{
-		//JobQueue<int, std::priority_queue<int> > queue;
-		//queue.Push(1);
-		//queue.Push(3);
-		//queue.Push(2);
+		ZL::JobQueue<int, std::priority_queue<int>, ZL::tagPRIO > queue;
+		queue.Push(1);
+		queue.Push(3);
+		queue.Push(2);
+		queue.Push(0);
 
-		//int p = 0;
-		//while (true)
-		//{
-			//if (queue.Pop(p))
-			//	std::cout << p << "\n";
-			//else
-			//	break;
-		//}
-		//std::cout << "================\n";
+		int p = -1;
+		while (true)
+		{
+			if (queue.TryPop(p))
+				std::cout << p << "\n";
+			else
+				break;
+		}
+		std::cout << "================\n";
 	}
 }
 
