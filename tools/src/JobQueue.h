@@ -75,13 +75,10 @@ public:
 		stop_flag_ = true;
 		has_job_.notify_all();
 	}
+private:
 	template <typename T>
-	bool PopOne(JobType& job, T tag)
-	{
-		job = queue_.front();
-		queue_.pop();
-		return true;
-	}
+	bool PopOne(JobType& job, T tag);
+
 	template <>
 	bool PopOne(JobType& job, tagFIFO tag)
 	{
@@ -89,6 +86,7 @@ public:
 		queue_.pop();
 		return true;
 	}
+
 	template <>
 	bool PopOne(JobType& job, tagFILO tag)
 	{
@@ -96,6 +94,7 @@ public:
 		queue_.pop();
 		return true;
 	}
+
 	template <>
 	bool PopOne(JobType& job, tagPRIO tag)
 	{
