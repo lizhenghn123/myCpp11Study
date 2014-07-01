@@ -129,6 +129,10 @@ void test_sort()
 		vector<int> v2(v1.size());
 		std::partition(v1.begin(), v1.end(), [](int e){ return e > 50; }); //将大于50的数放在前面，不考虑排序
 		print_all(v1.begin(), v1.end());
+
+		int oddeven[] = { 1, 2, 3, 4, 5, 6 };
+		std::partition(oddeven, oddeven + 6, [](int x){ return x % 2 != 0; }); //排序，将奇数放在偶数之前
+		print_all(oddeven, oddeven + 6);
 	}
 	{	// stable_partition
 		std::cout << "--------------   stable_partition   --------------\n";
@@ -139,6 +143,10 @@ void test_sort()
 		vector<int> v2(v1.size());
 		std::stable_partition(v1.begin(), v1.end(), [](int e){ return e > 50; }); //将大于50的数放在前面，次序保持不变
 		print_all(v1.begin(), v1.end());
+
+		int oddeven[] = { 1, 2, 3, 4, 5, 6 };
+		std::stable_partition(oddeven, oddeven + 6, [](int x){ return x % 2 != 0; }); //排序，将奇数放在偶数之前
+		print_all(oddeven, oddeven + 6);
 	}
 	{	// merge inplace_merge
 		vector<int> v1 = { 1, 3, 4, 9 };
