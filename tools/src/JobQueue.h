@@ -13,6 +13,7 @@
 #define ZL_JOBQUEUE_FILE_H
 
 #include <queue>
+#include <stack>
 #include <mutex>
 #include <condition_variable>
 
@@ -20,8 +21,8 @@ namespace ZL
 { 
 
 struct tagFIFO {};  //先进先出
-struct tagFILO {};  //后进先出
-struct tagPRIO {};  //按优先级出
+struct tagFILO {};  //先进后出
+struct tagPRIO {};  //按优先级
 
 template <typename Job, typename Queue = std::queue<Job>, typename Order = tagFIFO >
 class JobQueue
@@ -107,7 +108,7 @@ private:
 	template <>
 	bool PopOne(JobType& job, tagFILO tag)
 	{
-		job = queue_.back();
+		job = queue_.top();
 		queue_.pop();
 		return true;
 	}
@@ -129,6 +130,15 @@ protected:
 	ConditionType    has_job_;
 	QueueType        queue_;
 };
+
+template< typename Job>
+using FifoJobQueue = JobQueue<Job, std::queue<Job>, tagFIFO>;
+
+template< typename Job>
+using FiloJobQueue = JobQueue<Job, std::stack<Job>, tagFILO>;
+
+template< typename Job>
+using PrioJobQueue = JobQueue<Job, std::priority_queue<Job>, tagPRIO>;
 
 } /* namespace ZL */
 
