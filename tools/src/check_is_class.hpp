@@ -2,7 +2,7 @@
 // Filename         : check_is_class.hpp
 // Author           : LIZHENG
 // Created          : 2014-06-09
-// Description      : ÅĞ¶ÏÒ»¸öÀàĞÍÊÇ·ñÊÇÀàÀàĞÍ£¬×¢Òâ£¬std::is_class¼´ÊÇ¸Ã¹¦ÄÜ
+// Description      : åˆ¤æ–­ä¸€ä¸ªç±»å‹æ˜¯å¦æ˜¯ç±»ç±»å‹ï¼Œæ³¨æ„ï¼Œstd::is_classå³æ˜¯è¯¥åŠŸèƒ½
 //
 // Last Modified By : LIZHENG
 // Last Modified On : 2014-06-09
@@ -17,16 +17,16 @@ namespace ZL
 	template <typename T>
 	class is_class
 	{
-		typedef char one;
-		typedef struct { char a[2]; } two;
+		typedef char YES;
+		typedef struct { char a[2]; } NO;
 
 		template <typename C>
-		static one test(int C::*);
+		static YES test_t(int C::*);
 
 		template <typename C>
-		static two test(...);
+		static NO test_t(...);
 	public:
-		enum { value = sizeof(test<T>(0)) == sizeof(one) };
+		enum { value = sizeof(test_t<T>(0)) == sizeof(YES) };
 	};
 
 } /* namespace ZL */
