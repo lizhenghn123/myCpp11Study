@@ -69,8 +69,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "daemon_test", "utility\daem
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SFINAE_Test", "tools\SFINAE_Test\SFINAE_Test.vcxproj", "{6CD7BAEF-731A-4E1C-BFFE-FB19D378DD06}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_func", "utility\string_func\string_func.vcxproj", "{255C4D1D-8398-4141-9FF4-D94E51787AF0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -189,10 +187,6 @@ Global
 		{6CD7BAEF-731A-4E1C-BFFE-FB19D378DD06}.Debug|Win32.Build.0 = Debug|Win32
 		{6CD7BAEF-731A-4E1C-BFFE-FB19D378DD06}.Release|Win32.ActiveCfg = Release|Win32
 		{6CD7BAEF-731A-4E1C-BFFE-FB19D378DD06}.Release|Win32.Build.0 = Release|Win32
-		{255C4D1D-8398-4141-9FF4-D94E51787AF0}.Debug|Win32.ActiveCfg = Debug|Win32
-		{255C4D1D-8398-4141-9FF4-D94E51787AF0}.Debug|Win32.Build.0 = Debug|Win32
-		{255C4D1D-8398-4141-9FF4-D94E51787AF0}.Release|Win32.ActiveCfg = Release|Win32
-		{255C4D1D-8398-4141-9FF4-D94E51787AF0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,6 +219,5 @@ Global
 		{E29C92C6-E426-47BF-A2D1-B1DA63F5C86B} = {3EDEC5FD-14E0-409D-BFEF-982C588BEA29}
 		{54F8B376-E123-4EFB-A966-2D26F48CED40} = {B7919F15-D957-4F0D-AC4C-54E44082F780}
 		{6CD7BAEF-731A-4E1C-BFFE-FB19D378DD06} = {15EAE415-4EB1-4CEA-A766-EBCD6605CBC1}
-		{255C4D1D-8398-4141-9FF4-D94E51787AF0} = {B7919F15-D957-4F0D-AC4C-54E44082F780}
 	EndGlobalSection
 EndGlobal
