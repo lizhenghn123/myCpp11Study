@@ -13,6 +13,7 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
+#include <assert.h>
 using namespace std;
 
 //! set_union set_intersection set_difference set_symmetric_difference
@@ -139,6 +140,27 @@ void test_permutation_algorithm()
 		vector<int> v2 = { 4, 3, 2, 1 };
 		if (std::is_permutation(v1.begin(), v1.end(), v2.begin()))
 			cout << "OK\n";
+	}
+	{   //求组合，7个元素中选3个
+		int values[] = { 1, 2, 3, 4, 5, 6, 7 };
+		int elements[] = { 1, 1, 1, 0, 0, 0, 0 };
+		const size_t N = sizeof(elements) / sizeof(elements[0]);
+		assert(N == sizeof(values) / sizeof(values[0]));
+		std::vector<int> selectors(elements, elements + N);
+
+		int count = 0;
+		do
+		{
+			std::cout << ++count << ": ";
+			for (size_t i = 0; i < selectors.size(); ++i)
+			{
+				if (selectors[i])
+				{
+					std::cout << values[i] << ", ";
+				}
+			}
+			std::cout << std::endl;
+		} while (prev_permutation(selectors.begin(), selectors.end()));
 	}
 }
 
