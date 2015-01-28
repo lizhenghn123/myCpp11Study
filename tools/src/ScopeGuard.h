@@ -23,7 +23,8 @@ class ScopeGuard
 public:
 	explicit ScopeGuard(std::function<void()> onExitScope)
 		: onExitScope_(onExitScope), dismissed_(false)
-	{ }
+	{
+	}
 
 	~ScopeGuard()
 	{
@@ -33,8 +34,8 @@ public:
 		}
 	}
 
-	///   用以支持rollback模式，轻易不要直接使用,除非为了支持回滚模式
-	void Dismiss()
+	/// 用以支持rollback模式，轻易不要直接使用,除非为了支持回滚模式
+	void dismiss()
 	{
 		dismissed_ = true;
 	}

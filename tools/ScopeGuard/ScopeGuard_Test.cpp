@@ -61,7 +61,7 @@ void test_scope_guard()
 			{
 				break;
 			}
-			rollbackIfFail.Dismiss(); //上面if失败，走不到这里，因此会导致ScopeGuard执行sc的RollBack函数
+			rollbackIfFail.dismiss(); //上面if失败，走不到这里，因此会导致ScopeGuard执行sc的RollBack函数
 		} while (0);
 	}
 	std::cout << "===================\n";
@@ -76,7 +76,7 @@ void test_scope_guard()
 			{
 				break;
 			}
-			rollbackIfFail.Dismiss(); //执行到这里，设置取消rollback机制，执行成功
+			rollbackIfFail.dismiss(); //执行到这里，设置取消rollback机制，执行成功
 		} while (0);
 	}
 	std::cout << "===================\n";

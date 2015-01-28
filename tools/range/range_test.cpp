@@ -5,7 +5,7 @@ using namespace std;
 void test_range()
 {
 	cout << "Range(15):";
-	for (auto i : Range(3)){
+	for (auto i : Range(15)){
 		cout << " " << i;  // 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14
 	}
 	cout << endl;
