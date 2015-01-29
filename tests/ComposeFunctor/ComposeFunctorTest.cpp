@@ -109,7 +109,8 @@ public:
 	Task(std::function<R(Args...)>& f) : m_fn(f)
 	{}
 
-	template<typename... Args> R run(Args&&... args)
+	template<typename... Args>
+	R run(Args&&... args)
 	{ 
 		return m_fn(std::forward<Args>(args)...); 
 	} 
@@ -127,7 +128,7 @@ private:
 
 void TestTask()
 {
-	Task<int(int)> task = [](int i){return i; };
+	Task<int(int)> task = [](int i){ return i; };
 	auto result = task.then([](int i){return i + 1; }).then([](int i){return i + 2; }).then([](int i){return i + 3; }).run(1);
 	cout << result << "\n";  //result 7
 }

@@ -75,6 +75,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Observer", "tests\Observer\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComposeFunctor", "tests\ComposeFunctor\ComposeFunctor.vcxproj", "{F8A92A39-7E1B-47D7-AB46-40A9A513BC9C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrintArgs", "tests\PrintArgs\PrintArgs.vcxproj", "{23FB2F63-F20B-4381-9361-5C271F6C4F5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -201,6 +203,10 @@ Global
 		{F8A92A39-7E1B-47D7-AB46-40A9A513BC9C}.Debug|Win32.Build.0 = Debug|Win32
 		{F8A92A39-7E1B-47D7-AB46-40A9A513BC9C}.Release|Win32.ActiveCfg = Release|Win32
 		{F8A92A39-7E1B-47D7-AB46-40A9A513BC9C}.Release|Win32.Build.0 = Release|Win32
+		{23FB2F63-F20B-4381-9361-5C271F6C4F5B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{23FB2F63-F20B-4381-9361-5C271F6C4F5B}.Debug|Win32.Build.0 = Debug|Win32
+		{23FB2F63-F20B-4381-9361-5C271F6C4F5B}.Release|Win32.ActiveCfg = Release|Win32
+		{23FB2F63-F20B-4381-9361-5C271F6C4F5B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,5 +241,6 @@ Global
 		{6CD7BAEF-731A-4E1C-BFFE-FB19D378DD06} = {15EAE415-4EB1-4CEA-A766-EBCD6605CBC1}
 		{C0852CC8-E7DD-4B47-8357-4211280119F4} = {7D89D8F3-2584-4F2C-BB6F-882FC39C61F5}
 		{F8A92A39-7E1B-47D7-AB46-40A9A513BC9C} = {7D89D8F3-2584-4F2C-BB6F-882FC39C61F5}
+		{23FB2F63-F20B-4381-9361-5C271F6C4F5B} = {7D89D8F3-2584-4F2C-BB6F-882FC39C61F5}
 	EndGlobalSection
 EndGlobal
