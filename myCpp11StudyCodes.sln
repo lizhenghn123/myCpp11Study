@@ -77,6 +77,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ComposeFunctor", "tests\Com
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrintArgs", "tests\PrintArgs\PrintArgs.vcxproj", "{23FB2F63-F20B-4381-9361-5C271F6C4F5B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tuple_test", "cpp11features\tuple_test\tuple_test.vcxproj", "{2FE850FA-C8BD-4602-A175-68636502D12A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -207,6 +209,10 @@ Global
 		{23FB2F63-F20B-4381-9361-5C271F6C4F5B}.Debug|Win32.Build.0 = Debug|Win32
 		{23FB2F63-F20B-4381-9361-5C271F6C4F5B}.Release|Win32.ActiveCfg = Release|Win32
 		{23FB2F63-F20B-4381-9361-5C271F6C4F5B}.Release|Win32.Build.0 = Release|Win32
+		{2FE850FA-C8BD-4602-A175-68636502D12A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2FE850FA-C8BD-4602-A175-68636502D12A}.Debug|Win32.Build.0 = Debug|Win32
+		{2FE850FA-C8BD-4602-A175-68636502D12A}.Release|Win32.ActiveCfg = Release|Win32
+		{2FE850FA-C8BD-4602-A175-68636502D12A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -242,5 +248,6 @@ Global
 		{C0852CC8-E7DD-4B47-8357-4211280119F4} = {7D89D8F3-2584-4F2C-BB6F-882FC39C61F5}
 		{F8A92A39-7E1B-47D7-AB46-40A9A513BC9C} = {7D89D8F3-2584-4F2C-BB6F-882FC39C61F5}
 		{23FB2F63-F20B-4381-9361-5C271F6C4F5B} = {7D89D8F3-2584-4F2C-BB6F-882FC39C61F5}
+		{2FE850FA-C8BD-4602-A175-68636502D12A} = {9E85737A-6117-4176-836F-D6F59FA50282}
 	EndGlobalSection
 EndGlobal

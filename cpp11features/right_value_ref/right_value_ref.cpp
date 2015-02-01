@@ -69,6 +69,7 @@ void process_value(const int&& i) { std::cout << "const int&&\n"; }
 template<typename T>
 void print_value(T& t)
 {
+	t++;
 	cout << "lvalue " << t << "\n";
 }
 
@@ -81,6 +82,7 @@ void print_value(T && t)
 template<typename T>
 void do_forward(T && v)
 {
+	v++;
 	print_value(v);
 	print_value(std::forward<T>(v)); //按照参数本来的类型来转发出去
 	print_value(std::move(v));       //将v变成右值引用
@@ -103,7 +105,7 @@ void test_forward()
 	do_forward(std::forward<int>(x));  // lvalue rvalue rvalue	
 }
 
-//通用函数包装器
+//万能函数包装器（右值引用+完美转发+可变模板参数）： 可以接收所有的函数，带返回值的、不带返回值的、带参数的、不带参数的
 template<typename Function, class... Args>
 inline auto FuncWrapper(Function && func, Args && ... args) -> decltype(func(std::forward<Args>(args)...))
 {
@@ -119,9 +121,9 @@ std::string func4(std::string s1, std::string s2){ return s1 + s2; }
 void test_func_wapper()
 {
 	FuncWrapper(func1);  // 1
-	//std::cout << FuncWrapper(func2) << "\n"; // 1
-	//std::cout << FuncWrapper(func3, 2) << "\n"; // 2
-	//std::cout << FuncWrapper(func4, "hello", " world") << "\n"; // hello  world
+	std::cout << FuncWrapper(func2) << "\n"; // 1
+	std::cout << FuncWrapper(func3, 2) << "\n"; // 2
+	std::cout << FuncWrapper(func4, "hello", " world") << "\n"; // hello  world
 }
 
 int main()
